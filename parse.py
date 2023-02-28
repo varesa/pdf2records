@@ -86,7 +86,8 @@ def textlines_to_records(lines: list[TextLine]) -> Iterable[Record]:
 def main(filename):
     xml = pdf_to_xml(filename)
     textlines = xml_to_textlines(xml)
-    records = textlines_to_records(list(textlines))
+    without_footer = filter(lambda line: line.y1 > 10, textlines)
+    records = textlines_to_records(list(without_footer))
     for record in records:
         print(record)
 
