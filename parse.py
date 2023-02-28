@@ -34,6 +34,9 @@ class Record:
     def __repr__(self):
         return '[' + ', '.join([repr(col) for col in self.columns]) + ']'
 
+    def __iter__(self):
+        return self.columns.__iter__()
+
 
 def pdf_to_xml(filename: str) -> str:
     xml = check_output(["pdf2txt", "-t", "xml", filename])
